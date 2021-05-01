@@ -10,7 +10,7 @@
       <v-list>
         <v-list-item v-for="(instruction, key) in instructions" :key="key">
           <v-list-item-content>
-            <v-list-item-title class="text-wrap">{{instruction}}</v-list-item-title>
+            <v-list-item-title class="text-wrap">{{ instruction }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -30,9 +30,9 @@ export default {
   data() {
     return {
       instructions: [
-          "1. Use the search page to pick a stock",
-          "2. Navigate to charts to see charts related to the stock",
-          "3. Visit the news page to see news about a stock"
+        "1. Use the search page to pick a stock",
+        "2. Navigate to charts to see charts related to the stock",
+        "3. Visit the news page to see news about a stock"
       ]
     }
   }

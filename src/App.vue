@@ -25,7 +25,7 @@
               :key="key"
           >
             <v-list-item-title>
-                  {{page["page-title"]}}
+              {{ page["page-title"] }}
             </v-list-item-title>
           </v-list-item>
         </v-list>
@@ -44,24 +44,21 @@
   </v-app>
   <v-app v-else>
     <v-app-bar app color="purple">
-
       <v-app-bar-nav-icon>
       </v-app-bar-nav-icon>
 
-      <v-toolbar-title class="text-break font-weight-medium">{{appTitle}}</v-toolbar-title>
+      <v-toolbar-title class="text-break font-weight-medium">{{ appTitle }}</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
       <router-link v-for="(page, key) in pages" :key="key" :to="page['page-link']" style="text-decoration: none">
         <v-btn class="mx-1" text color="white">
-          <span>{{page["page-title"] || "N/A"}}</span>
+          <span>{{ page["page-title"] || "N/A" }}</span>
         </v-btn>
       </router-link>
     </v-app-bar>
 
-    <!-- Sizes your content based upon application components -->
     <v-main>
-      <!-- Provides the application the proper gutter -->
       <v-container fluid>
         <router-view>
           <router-link to="/">about</router-link>
@@ -106,35 +103,35 @@
 </style>
 
 <script>
-  export default {
-    name: 'App',
-    data() {
-      return {
-        pages: [
-          {
-            "page-title": "Home",
-            "page-link": "/"
-          },
-          {
-            "page-title": "Search",
-            "page-link": "/search"
-          },
-          {
-            "page-title": "Charts",
-            "page-link": "/charts"
-          },
-          {
-            "page-title": "News",
-            "page-link": "/news"
-          }
-        ],
-        appTitle: "Stockify"
-      }
-    },
-    computed: {
-      isMobile() {
-        return this.$vuetify.breakpoint.xsOnly;
-      }
+export default {
+  name: 'App',
+  data() {
+    return {
+      pages: [
+        {
+          "page-title": "Home",
+          "page-link": "/"
+        },
+        {
+          "page-title": "Search",
+          "page-link": "/search"
+        },
+        {
+          "page-title": "Charts",
+          "page-link": "/charts"
+        },
+        {
+          "page-title": "News",
+          "page-link": "/news"
+        }
+      ],
+      appTitle: "Stockify"
+    }
+  },
+  computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.xsOnly;
     }
   }
+}
 </script>
