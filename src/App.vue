@@ -152,7 +152,7 @@ export default {
           break;
         }
       }
-      
+
       if (name !== this.$route.name)
         this.$router.push({path: link})
     }

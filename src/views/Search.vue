@@ -44,12 +44,7 @@ export default {
     this.pageReady = true;
   },
   async created() {
-    this.exchanges = await idb.getExchanges()
-
-    if (this.exchanges.length === 0) {
-      console.log("populating db")
-      await this.populateDB()
-    }
+    await this.populateDB()
   },
   methods: {
     setSymbol(symbol) {
