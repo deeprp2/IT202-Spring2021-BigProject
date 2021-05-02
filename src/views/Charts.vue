@@ -43,7 +43,7 @@ export default {
         labels: [],
         datasets: [
           {
-            label: 'Data One',
+            label: 'Volume',
             backgroundColor: '#f87979',
             data: []
           }

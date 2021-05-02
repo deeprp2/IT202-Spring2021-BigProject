@@ -13,9 +13,8 @@
           </v-autocomplete>
         </v-form>
 
-        <v-btn>
-          <div v-if="selectedStock !== null">See Charts For {{ this.selectedStock }}</div>
-          <div v-else>See charts</div>
+        <v-btn to="/charts">
+          <div>See charts</div>
         </v-btn>
 
       </v-container>

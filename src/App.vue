@@ -45,8 +45,6 @@
   </v-app>
   <v-app v-else>
     <v-app-bar app color="purple">
-      <v-app-bar-nav-icon>
-      </v-app-bar-nav-icon>
 
       <v-toolbar-title class="text-break font-weight-medium">{{ appTitle }}</v-toolbar-title>
 
