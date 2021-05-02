@@ -15,7 +15,7 @@
           <v-flex>
             <div style="max-width: 500px; max-height: 500px">
               <h3>Historical Price Chart</h3>
-              <BarChart :chartdata="chartData"/>
+              <LineChart :chartdata="lineChartData" v-if="renderCharts"/>
             </div>
           </v-flex>
         </v-layout>
@@ -29,6 +29,7 @@ import axios from "axios";
 // import Vue from 'vue';
 // import obj from "@/assets/StockMap";
 import BarChart from "@/components/BarChart";
+import LineChart from "@/components/LineChart";
 
 // https://eodhistoricaldata.com/api/eod/AAPL.US?from=2020-01-05&to=2020-02-10&api_token=OeAFFmMliFG5orCUuwAKQ8l4WWFQ67YX&period=d&fmt=json
 
@@ -48,10 +49,28 @@ export default {
           }
         ]
       },
+      lineChartData: {
+        labels: [],
+        datasets: [
+          {
+            fill: false,
+            label: 'High',
+            borderColor: '#5cff00',
+            data: []
+          },
+          {
+            fill: false,
+            label: 'Low',
+            borderColor: '#f52828',
+            data: []
+          }
+        ]
+      }
     }
   },
   components: {
     BarChart,
+    LineChart
   },
   computed: {
     selectedStock() {
@@ -62,6 +81,9 @@ export default {
     await this.populateStockPriceData();
     this.chartData.datasets[0].data = this.priceData.map(item => item["volume"])
     this.chartData.labels = this.priceData.map(item => item["date"]);
+    this.lineChartData.labels = this.chartData.labels
+    this.lineChartData.datasets[0].data = this.priceData.map(item => item["high"])
+    this.lineChartData.datasets[1].data = this.priceData.map(item => item["low"])
     this.renderCharts = true;
   },
   methods: {

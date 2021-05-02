@@ -2,7 +2,8 @@
   <v-app v-if="isMobile">
     <v-app-bar app color="purple">
       <v-toolbar-title class="text-break">{{ appTitle }}</v-toolbar-title>
-
+      <v-spacer></v-spacer>
+      <h2 class="text-break font-weight-medium">{{selectedStock}}</h2>
       <v-spacer></v-spacer>
 
       <v-menu
@@ -49,6 +50,8 @@
 
       <v-toolbar-title class="text-break font-weight-medium">{{ appTitle }}</v-toolbar-title>
 
+      <v-spacer></v-spacer>
+      <h2 class="text-break font-weight-medium">{{selectedStock}}</h2>
       <v-spacer></v-spacer>
 
       <router-link v-for="(page, key) in pages" :key="key" :to="page['page-link']" style="text-decoration: none">
@@ -103,6 +106,9 @@
 </style>
 
 <script>
+import store from "@/store/store";
+import obj from "@/assets/StockMap";
+
 export default {
   name: 'App',
   data() {
@@ -131,6 +137,9 @@ export default {
   computed: {
     isMobile() {
       return this.$vuetify.breakpoint.xsOnly;
+    },
+    selectedStock() {
+      return (store.getters.stockSymbol !== null) ? obj[store.getters.stockSymbol] : ""
     }
   }
 }
