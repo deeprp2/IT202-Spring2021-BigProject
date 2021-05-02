@@ -45,6 +45,8 @@ let obj = {
     "INTC": "Intel",
     "AEP": "American Electric Power",
     "ILMN": "Illumina",
+    "AAPL": "Apple Inc",
+    "MSFT": "Microsoft"
 }
 
 export default obj;

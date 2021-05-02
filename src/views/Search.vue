@@ -14,7 +14,7 @@
         </v-form>
 
         <v-btn>
-          <div v-if="selectedStock !== null">See Charts For {{this.selectedStock}}</div>
+          <div v-if="selectedStock !== null">See Charts For {{ this.selectedStock }}</div>
           <div v-else>See charts</div>
         </v-btn>
 
@@ -57,7 +57,7 @@ export default {
       store.commit("SET_STOCK_SYMBOL", symbol);
     },
     getStockName(symbol) {
-        return obj[symbol]
+      return obj[symbol]
     },
     async populateDB() {
       await axios.get(`https://finnhub.io/api/v1/index/constituents?symbol=^NDX&token=${process.env.VUE_APP_FINHUB_KEY}`)
@@ -73,11 +73,11 @@ export default {
                 })
               }
             })
-      })
+          })
     }
   },
   watch: {
-    selectedStock (val) {
+    selectedStock(val) {
       this.setSymbol(Object.keys(obj).filter(k => obj[k] === val)[0])
     }
   }
@@ -86,8 +86,8 @@ export default {
 
 <style>
 
-  .custom-container {
-    max-width: 500px;
-  }
+.custom-container {
+  max-width: 500px;
+}
 
 </style>
