@@ -16,7 +16,7 @@
       </v-list>
     </p>
 
-    <v-btn class="info" href="/search">
+    <v-btn class="info" to="/search">
       Search
     </v-btn>
   </div>

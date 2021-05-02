@@ -26,12 +26,8 @@
 <script>
 import store from "@/store/store";
 import axios from "axios";
-// import Vue from 'vue';
-// import obj from "@/assets/StockMap";
 import BarChart from "@/components/BarChart";
 import LineChart from "@/components/LineChart";
-
-// https://eodhistoricaldata.com/api/eod/AAPL.US?from=2020-01-05&to=2020-02-10&api_token=OeAFFmMliFG5orCUuwAKQ8l4WWFQ67YX&period=d&fmt=json
 
 export default {
   name: "Charts",
@@ -80,7 +76,7 @@ export default {
   async mounted() {
     await this.populateStockPriceData();
     this.chartData.datasets[0].data = this.priceData.map(item => item["volume"])
-    this.chartData.labels = this.priceData.map(item => item["date"]);
+    this.chartData.labels = this.priceData.map(item => item["date"]).map(time => time.substr(0, time.indexOf('T')));
     this.lineChartData.labels = this.chartData.labels
     this.lineChartData.datasets[0].data = this.priceData.map(item => item["high"])
     this.lineChartData.datasets[1].data = this.priceData.map(item => item["low"])
@@ -88,10 +84,10 @@ export default {
   },
   methods: {
     async populateStockPriceData() {
-      await axios.get(`https://eodhistoricaldata.com/api/eod/${this.selectedStock}.US?api_token=${process.env.VUE_APP_EOD_API_KEY}&period=w&fmt=json`)
+      await axios.get(`http://api.marketstack.com/v1/eod?access_key=${process.env.VUE_APP_EOD_API_KEY}&symbols=${this.selectedStock}&date_from=2020-05-01`)
         .then(async (response) => {
           let data = response.data;
-          data.forEach((stock) => {
+          data.data.forEach((stock) => {
             this.priceData.push(stock)
           })
         })
