@@ -5,7 +5,6 @@
       <v-spacer></v-spacer>
       <h2 class="text-break font-weight-medium">{{selectedStock}}</h2>
       <v-spacer></v-spacer>
-
       <v-menu
           left
           bottom
@@ -24,6 +23,7 @@
           <v-list-item
               v-for="(page, key) in pages"
               :key="key"
+              @click="event => handleClick(event)"
           >
             <v-list-item-title>
               {{ page["page-title"] }}
@@ -138,6 +138,23 @@ export default {
     },
     selectedStock() {
       return (store.getters.stockSymbol !== null) ? obj[store.getters.stockSymbol] : ""
+    }
+  },
+  methods: {
+    handleClick(e) {
+      let name = e.target.outerText;
+
+      let link;
+
+      for (let i = 0; i < this.pages.length; i++) {
+        if (this.pages[i]["page-title"] === name) {
+          link = this.pages[i]["page-link"]
+          break;
+        }
+      }
+      
+      if (name !== this.$route.name)
+        this.$router.push({path: link})
     }
   }
 }
