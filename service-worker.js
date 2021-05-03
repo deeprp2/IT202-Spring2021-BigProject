@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/IT202-Spring2021-BigProject/precache-manifest.ac823cf2629a0ea335bc9bdc2b550a38.js"
+  "/IT202-Spring2021-BigProject/precache-manifest.6bc8d6490cbb9a90fbd0be1537277aa3.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "bigproject"});
