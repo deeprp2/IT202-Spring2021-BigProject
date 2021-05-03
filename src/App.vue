@@ -42,6 +42,10 @@
         </router-view>
       </v-container>
     </v-main>
+
+    <v-footer app>
+      Current Location: Latitude: {{lat}}, Longitude: {{long}}
+    </v-footer>
   </v-app>
   <v-app v-else>
     <v-app-bar app color="purple">
@@ -71,7 +75,7 @@
     </v-main>
 
     <v-footer app>
-
+      Current Location: Latitude: {{lat}}, Longitude: {{long}}
     </v-footer>
   </v-app>
 </template>
@@ -129,8 +133,13 @@ export default {
           "page-link": "/news"
         }
       ],
-      appTitle: "Stockify"
+      appTitle: "Stockify",
+      lat: "",
+      long: ""
     }
+  },
+  mounted() {
+    this.getLocation()
   },
   computed: {
     isMobile() {
@@ -155,6 +164,14 @@ export default {
 
       if (name !== this.$route.name)
         this.$router.push({path: link})
+    },
+    getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((data) => {
+          this.lat = data.coords.latitude;
+          this.long = data.coords.longitude;
+        });
+      }
     }
   }
 }
